@@ -1,0 +1,4 @@
+Caso 3: Se organiza por división y no por programa
+Solución: Esto sucede por que la primera pagina esta vacia, la solución fue 
+verificar que cuando la primera pagina este vacia, tomar los datos de la segunda.
+Posible consecuencias: Que las siguientes paginas esten vacias.

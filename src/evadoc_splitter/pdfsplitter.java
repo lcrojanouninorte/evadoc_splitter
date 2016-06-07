@@ -85,6 +85,11 @@ public class pdfsplitter {
                 Rectangle2D region_eval_tipo = new Rectangle2D.Double(70, 170, 75, 20);
                 PDPage page_from =   (PDPage)this.document.getDocumentCatalog().getAllPages().get(0);
                 String tipo_comentarios = get_text_by_area(region_eval_tipo, page_from, 0);
+                //puede que la primera pagina este vacia: CASO 3 documentado, verificar entoces en la segunda  pagina
+                if(tipo_comentarios.equals("")){
+                      page_from =   (PDPage)this.document.getDocumentCatalog().getAllPages().get(1);
+                      tipo_comentarios = get_text_by_area(region_eval_tipo, page_from,1);
+                }
                 if(tipo_comentarios.equals("EVADOCPOS")){
                     //organizar por programa
                     Rectangle2D region_programa = new Rectangle2D.Double(390, 155, 250, 20);
@@ -197,7 +202,8 @@ public class pdfsplitter {
             //verificar si no es comentario
             if(!type.equals("GZRDEVA")){
                 //verificar si es reporte
-                region = new Rectangle2D.Double(0, 570, 300, 20);
+               // region = new Rectangle2D.Double(0, 570, 300, 20);
+                region = new Rectangle2D.Double(0, 570, 300, 190);
                 regionName = "region_id_reporte";
                 stripper = new PDFTextStripperByArea();
                 stripper.addRegion(regionName, region);
